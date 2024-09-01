@@ -31,3 +31,25 @@ class TestLibrary(unittest.TestCase):
 
 
 #-------------------------------------- Production Code --------------------------------------------------------------------------
+
+class Book:
+    def __init__(self, id, title, author, publication_year):
+        self.id = id
+        self.title = title
+        self.author = author
+        self.publication_year = publication_year
+        self.available = True
+
+    def __repr__(self):
+        return f"Book({self.id}, '{self.title}', '{self.author}', {self.publication_year}, Available: {self.available})"
+
+class Library:
+    def __init__(self):
+        self.books = []
+
+    def add_book(self, book):
+        if any(existing_book.id == book.id for existing_book in self.books):
+            print("Book already exists in the library.")
+        else:
+            self.books.append(book)
+            print(f"Book '{book.title}' added to the library.")
