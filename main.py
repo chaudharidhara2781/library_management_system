@@ -39,6 +39,20 @@ class TestLibrary(unittest.TestCase):
         # test borrowing the book that does not exist
         self.assertFalse(self.library.borrow_book(27))
 
+    def test_return_book_success(self):
+        # borrow a book first
+        self.library.borrow_book(1)
+
+        # test returning a book
+        self.assertTrue(self.library.return_book(1))
+        self.assertTrue(self.book1.available)
+
+        # returning an already returned book
+        self.assertFalse(self.library.return_book(1))
+
+        # returning a book that does not exist
+        self.assertFalse(self.library.return_book(27))
+
 
 
 #-------------------------------------- Production Code --------------------------------------------------------------------------
