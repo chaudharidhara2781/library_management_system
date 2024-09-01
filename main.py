@@ -70,7 +70,6 @@ class TestLibrary(unittest.TestCase):
         self.assertEqual(len(available_books), 3)
 
 
-
 # -------------------------------------- Production Code --------------------------------------------------------------------------
 
 class Book:
@@ -110,7 +109,7 @@ class Library:
         for book in self.books:
             # borrowing a book and marking it as not available
             if book.id == book_id and book.available:
-                book.available = False # marked as not available
+                book.available = False  # marked as not available
                 print(f"Book '{book.title}' has been borrowed.")
                 return True
         print("Book not available or not found.")
@@ -121,11 +120,23 @@ class Library:
         for book in self.books:
             if book.id == book_id:
                 if not book.available:  # Check if the book was borrowed
-                    book.available = True # marked as available/ returned
+                    book.available = True  # marked as available/ returned
                     print(f"Book '{book.title}' has been returned.")
                     return True
                 else:
-                    print(f"Book '{book.title}' was not borrowed.") # print if user tried to return a book that was not borrowed
+                    print(
+                        f"Book '{book.title}' was not borrowed.")  # print if user tried to return a book that was not borrowed
                     return False
         print("Book not found in the library.")
         return False
+
+    def view_available_books(self)
+
+        # list of books that are currently available
+        available_books = [book for book in self.books if book.available]
+        print("Available books:")
+
+        # showing details of each available book
+        for book in available_books:
+            print(book)
+        return available_books
