@@ -27,6 +27,17 @@ class TestLibrary(unittest.TestCase):
         self.library.add_book(self.book1)
         self.assertEqual(len(self.library.books), 4)  # duplicate book not added
 
+    def test_borrow_book(self):
+        # testing borrow book
+        self.assertTrue(self.library.borrow_book(1))
+        self.assertFalse(self.book.available)
+        self.assertEqual(len(self.library.books), 3)
+
+        # test borrowing the same book again
+        self.assertFalse(self.library.borrow_book(1))
+
+        # test borrowing the book that does not exist
+        self.assertFalse(self.library.borrow_book(27))
 
 
 
