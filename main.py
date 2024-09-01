@@ -54,6 +54,22 @@ class TestLibrary(unittest.TestCase):
         # returning a book that does not exist
         self.assertFalse(self.library.return_book(27))
 
+    def test_view_available_books(self):
+        # all the available book
+        available_books = self.library.view_available_books()
+        self.assertEqual(len(available_books), 3)
+
+        # Borrow a book and check available books
+        self.library.borrow_book(1)
+        available_books = self.library.view_available_books()
+        self.assertEqual(len(available_books), 2)
+
+        # Return the book and check available books again
+        self.library.return_book(1)
+        available_books = self.library.view_available_books()
+        self.assertEqual(len(available_books), 3)
+
+
 
 # -------------------------------------- Production Code --------------------------------------------------------------------------
 
@@ -106,7 +122,7 @@ class Library:
             if book.id == book_id:
                 if not book.available:  # Check if the book was borrowed
                     book.available = True # marked as available/ returned
-                    print(f"Book '{book.title}' has been returned.") 
+                    print(f"Book '{book.title}' has been returned.")
                     return True
                 else:
                     print(f"Book '{book.title}' was not borrowed.") # print if user tried to return a book that was not borrowed
