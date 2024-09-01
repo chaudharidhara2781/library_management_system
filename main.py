@@ -87,3 +87,16 @@ class Library:
                 return True
         print("Book not available or not found.")
         return False
+
+    def return_book(self, book_id):
+        for book in self.books:
+            if book.id == book_id:
+                if not book.available:
+                    book.available = True
+                    print(f"Book '{book.title}' has been returned.")
+                    return True
+                else:
+                    print(f"Book '{book.title}' was not borrowed.")
+                    return False
+        print("Book not found in the library.")
+        return False
