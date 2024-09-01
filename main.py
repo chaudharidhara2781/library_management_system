@@ -69,3 +69,50 @@ class Library:
         return available_books
 
 
+def main():
+    library = Library()
+
+    while True:
+        print("\n--- Library Management System ---")
+        print("1. Add a book")
+        print("2. Borrow a book")
+        print("3. Return a book")
+        print("4. View available books")
+        print("5. Exit")
+
+        choice = input("Enter your choice (1-5): ")
+
+        if choice == '1':
+            # Add a book
+            book_id = int(input("Enter book ID: "))
+            title = input("Enter book title: ")
+            author = input("Enter book author: ")
+            publication_year = int(input("Enter publication year: "))
+            new_book = Book(book_id, title, author, publication_year)
+            library.add_book(new_book)
+
+        elif choice == '2':
+            # Borrow a book
+            book_id = int(input("Enter book ID to borrow: "))
+            library.borrow_book(book_id)
+
+        elif choice == '3':
+            # Return a book
+            book_id = int(input("Enter book ID to return: "))
+            library.return_book(book_id)
+
+        elif choice == '4':
+            # View available books
+            library.view_available_books()
+
+        elif choice == '5':
+            # Exit the program
+            print("Exiting the program. Goodbye!")
+            break
+
+        else:
+            print("Invalid choice. Please enter a number between 1 and 5.")
+
+
+if __name__ == "__main__":
+    main()
