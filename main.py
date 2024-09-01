@@ -64,3 +64,12 @@ class Library:
         else:
             self.books.append(book)
             print(f"Book '{book.title}' added to the library.")
+
+    def borrow_book(self, book_id):
+        for book in self.books:
+            if book.id == book_id and book.available:
+                book.available = False
+                print(f"Book '{book.title}' has been borrowed.")
+                return True
+        print("Book not available or not found.")
+        return False
